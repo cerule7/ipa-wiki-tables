@@ -1,0 +1,24 @@
+tr {
+    outline: black solid 1px;
+}
+
+td {
+    outline: black solid 1px;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+td:hover {
+    cursor: pointer;
+}
+
+div.centered {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+th {
+    outline: black solid 1px;
+}

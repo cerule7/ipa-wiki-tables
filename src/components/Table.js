@@ -14,6 +14,7 @@ const getTableHeaders = () => {
 const Table = () => {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [tableResult, setTableResult] = useState('');
+    const [languageName, setLanguageName] = useState('');
 
     const handleClick = (symbol, action) => {
         if (action === 'REMOVE') {
@@ -47,16 +48,16 @@ const Table = () => {
 
     const generateTable = () => {
         if (selectedOptions.length !== 0) {
-            const table = Wiki_Service.getWikiTable(selectedOptions);
+            const table = Wiki_Service.getWikiTable(selectedOptions, languageName);
             setTableResult(table);
         }
     };
 
-    const copy = () => {
+    const onCopy = () => {
         navigator.clipboard.writeText(tableResult);
     };
 
-    const clear = () => {
+    const onClear = () => {
         window.location.reload(false);
     };
 
@@ -71,10 +72,12 @@ const Table = () => {
                 </tbody>
             </table>
             <br />
-            Selected options: { selectedOptions.map((e) => e.symbol).join(', ') }
+            Selected symbols: { selectedOptions.map((e) => e.symbol).join(', ') }
+            <br />
+            Name of language: <input type="text" onChange={(e) => setLanguageName(e.target.value)} />
             <br />
             <br />
-            <button onClick={generateTable}> Generate Table </button> {'  '} <button onClick={copy}> Copy </button> {'  '} <button onClick={clear}> Clear </button>
+            <button onClick={generateTable}> Generate Table </button> {'  '} <button onClick={onCopy}> Copy </button> {'  '} <button onClick={onClear}> Clear </button>
             <br />
             <br />
             {

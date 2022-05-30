@@ -1,8 +1,8 @@
 import * as IPA_Service from './ipa_info.js';
 
-export const getWikiTable = (symbols) => { 
+export const getWikiTable = (symbols, languageName) => { 
     const table = [];
-    table.push(getTableHeader());
+    table.push(getTableHeader(languageName));
     const columnHeaders = getTableColumHeaders(symbols);
     table.push(columnHeaders);
     const uniquePlaces = [...new Set(symbols.map((e) => e.place))];
@@ -11,7 +11,8 @@ export const getWikiTable = (symbols) => {
     return table.join('\n');
 };
 
-const getTableHeader = () => {
+const getTableHeader = (languageName) => {
+    if (languageName.length > 0)  return (`{| class="wikitable" style="text-align:center"\n|+ Consonants of ${languageName}`);
     return (`{| class="wikitable" style="text-align:center"\n|+ Consonants`);
 };
 
